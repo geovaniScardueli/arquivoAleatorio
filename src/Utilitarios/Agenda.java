@@ -14,6 +14,7 @@ public class Agenda {
     private String id;
     private String nomePessoa;
     private String telefone;
+    private long ponteiro;
 
     public String getId() {
         return id;
@@ -38,4 +39,13 @@ public class Agenda {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    public long getPonteiro() {
+        return ponteiro;
+    }
+
+    public void setPonteiro(long ponteiro) {
+        this.ponteiro = ponteiro;
+    }
+    
 }

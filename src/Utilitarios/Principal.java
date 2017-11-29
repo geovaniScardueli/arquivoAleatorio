@@ -1,6 +1,7 @@
 package Utilitarios;
 
 import agendar.Agendar;
+import cancelAtualizarExcluir.Atualizar;
 import lista.Lista;
 
 
@@ -8,6 +9,7 @@ public class Principal extends javax.swing.JFrame {
 
     private Agendar agendar;
     private Lista lista;
+    private Atualizar atualizar;
  
     public Principal() {
         initComponents();
@@ -18,9 +20,11 @@ public class Principal extends javax.swing.JFrame {
         
         agendar = new Agendar();
         lista = new Lista();
+        atualizar = new Atualizar();
         
         container.add("Agendamento", agendar);
         container.add("Lista", lista);
+        container.add("atualizar", atualizar);
     }
     
 
@@ -48,6 +52,8 @@ public class Principal extends javax.swing.JFrame {
             agendar.ativar();
         } else if (container.getSelectedComponent() == lista) {
             lista.ativar();
+        } else if (container.getSelectedComponent() == atualizar) {
+            atualizar.ativar();
         }
     }//GEN-LAST:event_containerStateChanged
 
