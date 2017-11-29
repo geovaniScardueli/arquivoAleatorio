@@ -18,7 +18,7 @@ public class Aleatorio {
 
     private RandomAccessFile ran;
     private static long ponteiro = 0l;
-    private String id = "1";
+    private static String id = "0";
 
     public Aleatorio() {
         try {
@@ -27,10 +27,10 @@ public class Aleatorio {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     public void ponteiro() {
         try {
-        System.out.println(ran.getFilePointer() + "");
+            System.out.println(ran.getFilePointer() + "");
             System.out.println(this.ponteiro);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -42,11 +42,11 @@ public class Aleatorio {
             if (Diretorio.priemiraAtivacao) {
                 buscaPosicaoLivre();
                 Diretorio.priemiraAtivacao = false;
-            } else {
-                int sequencia = Integer.parseInt(id.trim());
-                sequencia++;
-                id = sequencia + "";
             }
+            int sequencia = Integer.parseInt(id.trim());
+            sequencia++;
+            id = sequencia + "";
+
             System.out.println(ran.getFilePointer());
             ran.seek(ponteiro);
             ran.write(id.getBytes());
@@ -127,7 +127,7 @@ public class Aleatorio {
     }
 
     public void excluirAgenda(long ponteiro) throws Exception {
-        if (this.ponteiro == 0) {
+        if (Diretorio.priemiraAtivacao) {
             buscaPosicaoLivre();
             Diretorio.priemiraAtivacao = false;
         }
@@ -166,18 +166,12 @@ public class Aleatorio {
             if (conseguiLer < 0) {
                 String temp = new String(arr, "UTF-8");
                 if (!"".equalsIgnoreCase(temp.trim())) {
-                    int sequencia = Integer.parseInt(id);
-                    sequencia++;
-                    id = sequencia + "";
                     ponteiro = ran.getFilePointer();
                 }
                 break;
             }
             String temp = new String(arr, "UTF-8");
             if ("".equals(temp.trim())) {
-                int sequencia = Integer.parseInt(id);
-                sequencia++;
-                id = sequencia + "";
                 ponteiro = ran.getFilePointer() - 10;
                 break;
             }
